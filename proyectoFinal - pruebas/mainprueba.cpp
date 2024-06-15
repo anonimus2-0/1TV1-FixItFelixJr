@@ -8,9 +8,8 @@ using namespace voyADemolerlo;
 
 int main(){
 
-    #define JUMP -27
-    #define escala 2.5
-    #define aceleracion 10
+    #define v 10
+    #define escala 1.8
 
     Personaje felix;
     MiniWinImage felixjr("felixstand.bmp", "felixstandmask.bmp");
@@ -57,8 +56,9 @@ int main(){
         
 
     t = tecla();
-    while( t != Teclas::F4){
+    while( t != Teclas::ESCAPE){
 
+        /*
         felixjr.posX(0);
         felixjr.posY(valto());
         felixjrmove.posX(0);
@@ -67,21 +67,24 @@ int main(){
         felixjrleft.posY(valto());
         felixjrmoveleft.posX(0);
         felixjrmoveleft.posY(valto());
+        */
 
-        if (y + felixjr.alto() > valto())
-            y = valto() - felixjr.alto();
+        if (x + felixjr.ancho() > vancho())
+            x = vancho() - felixjr.ancho();
         if (i_presionada)
-            x -= 27;
+            x -= v;
         if (x < 0)
             x = 0;
         if (d_presionada)
-            x += 27;
-        if (x + felixjr.ancho() > vancho())
-            x = vancho() - felixjr.ancho();
+            x += v;
+        if (y + felixjr.alto() > valto())
+            y = valto() - felixjr.alto();
         if (ar_presionada)
-            y += JUMP;
+            y += -v;
+        if (y < 0)
+            y = 0;
         if (ab_presionada)
-            y -= JUMP;
+            y -= -v;
 
         borra();
         color(NEGRO);
